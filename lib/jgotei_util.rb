@@ -49,10 +49,8 @@ class SheetHolder
 end
 
 module GoteiUtil
-#Gotei_file='計算しましょ　「五訂成分」.xls'
-#Gotei_file='計算しましょ　「五訂増補版」.xls'
-#Gotei_file='計算しましょ　「五訂増補版」.xlsx'
-Gotei_file='gotei_revised.xls'
+
+Gotei_file='nanatei-1.xlsx'
 
 include Apath
 
