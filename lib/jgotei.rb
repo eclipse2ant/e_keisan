@@ -14,6 +14,7 @@ class Gotei
 	def initialize(name)
 #    p name
     filename = get_filename
+    p filename
     begin
       sheet=SheetHolder.instance.sheet
       p sheet

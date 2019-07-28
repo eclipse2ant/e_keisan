@@ -4,14 +4,14 @@
 $:.unshift File.expand_path("java-lib", ENV['E_KEISAN'])
 
 require 'java'
-require 'commons-collections4-4.3.jar'
-require 'commons-compress-1.18.jar' 
-require 'poi-4.1.0.jar'
-require 'poi-ooxml-4.1.0.jar'
-require 'poi-ooxml-schemas-4.1.0.jar'
-require 'poi-scratchpad-4.1.0.jar'
-require 'poi-excelant-4.1.0.jar'
-require 'xmlbeans-3.1.0.jar'
+require 'commons-collections4-4.1.jar'
+#require 'commons-compress-1.18.jar' 
+require 'poi-3.17.jar'
+require 'poi-ooxml-3.17.jar'
+require 'poi-ooxml-schemas-3.17.jar'
+require 'poi-scratchpad-3.17.jar'
+require 'poi-excelant-3.17.jar'
+require 'xmlbeans-2.6.0.jar'
 
 java_import 'java.io.FileInputStream'
 java_import 'org.apache.poi.hssf.usermodel.HSSFWorkbook'
@@ -32,6 +32,7 @@ java_import 'org.apache.poi.xssf.usermodel.XSSFRow'
 java_import 'org.apache.poi.xssf.usermodel.XSSFSheet'
 java_import 'org.apache.poi.xssf.usermodel.XSSFWorkbook'
 
+
 #require 'file-win32'
 require 'singleton'
 require 'apath'
@@ -39,7 +40,8 @@ require 'apath'
 module Worksheet
   def [] y,x
     cell=self.getRow(y-1).getCell(x-1)
-   p cell
+#   cell=self.getRow(y-1).getCell(x-1,RETURN_BLANK_AS_NULL)
+#   p cell
     if cell.nil? 
       return nil
     elsif
@@ -67,7 +69,7 @@ module GoteiUtil
 #Gotei_file='計算しましょ　「五訂成分」.xls'
 #Gotei_file='計算しましょ　「五訂増補版」.xls'
 #Gotei_file='計算しましょ　「五訂増補版」.xlsx'
-Gotei_file='nanatei-1.xlsx'
+Gotei_file='nanatei_1.xlsx'
 
 include Apath
 
