@@ -4,19 +4,33 @@
 $:.unshift File.expand_path("java-lib", ENV['E_KEISAN'])
 
 require 'java'
-require 'poi-3.8-20120326.jar'
-require 'poi-ooxml-3.8-20120326.jar'
-require 'poi-ooxml-schemas-3.8-20120326.jar'
-require 'poi-scratchpad-3.8-20120326.jar'
-
+require 'commons-collections4-4.3.jar'
+require 'commons-compress-1.18.jar' 
+require 'poi-4.1.0.jar'
+require 'poi-ooxml-4.1.0.jar'
+require 'poi-ooxml-schemas-4.1.0.jar'
+require 'poi-scratchpad-4.1.0.jar'
+require 'poi-excelant-4.1.0.jar'
+require 'xmlbeans-3.1.0.jar'
 
 java_import 'java.io.FileInputStream'
 java_import 'org.apache.poi.hssf.usermodel.HSSFWorkbook'
 java_import 'org.apache.poi.hssf.usermodel.HSSFSheet'
 java_import 'org.apache.poi.hssf.usermodel.HSSFRow'
 java_import 'org.apache.poi.hssf.usermodel.HSSFCell'
-java_import 'org.apache.poi.ss.usermodel.Row'
-java_import 'org.apache.poi.ss.usermodel.Cell'
+java_import 'org.apache.poi.hssf.util.HSSFColor'
+
+
+java_import 'org.apache.poi.ss.usermodel.BorderStyle'
+java_import 'org.apache.poi.ss.usermodel.FillPatternType'
+java_import 'org.apache.poi.ss.usermodel.HorizontalAlignment'
+java_import 'org.apache.poi.ss.usermodel.IndexedColors'
+java_import 'org.apache.poi.xssf.usermodel.XSSFCell'
+java_import 'org.apache.poi.xssf.usermodel.XSSFCellStyle'
+java_import 'org.apache.poi.xssf.usermodel.XSSFFont'
+java_import 'org.apache.poi.xssf.usermodel.XSSFRow'
+java_import 'org.apache.poi.xssf.usermodel.XSSFSheet'
+java_import 'org.apache.poi.xssf.usermodel.XSSFWorkbook'
 
 #require 'file-win32'
 require 'singleton'
@@ -24,12 +38,13 @@ require 'apath'
 
 module Worksheet
   def [] y,x
-#    self.Cells.Item(y,x).Value
-    cell=self.getRow(y-1).getCell(x-1,Row.RETURN_BLANK_AS_NULL)
+    cell=self.getRow(y-1).getCell(x-1)
+   p cell
     if cell.nil? 
       return nil
     elsif
       type=cell.getCellType()
+      p type
       if type == 0
         return cell.getNumericCellValue
       elsif type == 1
@@ -49,7 +64,9 @@ class SheetHolder
 end
 
 module GoteiUtil
-
+#Gotei_file='計算しましょ　「五訂成分」.xls'
+#Gotei_file='計算しましょ　「五訂増補版」.xls'
+#Gotei_file='計算しましょ　「五訂増補版」.xlsx'
 Gotei_file='nanatei-1.xlsx'
 
 include Apath
@@ -59,11 +76,13 @@ include Apath
   end
 
   def get_sheet(excel,filename)
-    workBook= HSSFWorkbook.new(filename)
-		sheet = workBook.getSheetAt(0)
-  	sheet.extend Worksheet
-		return sheet	
-	end
+    workBook= XSSFWorkbook.new(filename)
+    sheet = workBook.getSheetAt(0)
+#    p sheet
+#    p sheet
+    sheet.extend Worksheet
+    return sheet	
+  end
 
 end
 

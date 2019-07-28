@@ -6,16 +6,16 @@ require 'jgotei'
 require 'test/unit'
 
 class TestGotei < Test::Unit::TestCase
-	def test_simple
-#   Gotei.new("米")
+  def test_simple
+    Gotei.new("米")
 #   assert_equal('1','1')
-		assert_equal("米", Gotei.new("米").record[3])
-		assert_raise(RuntimeError){Gotei.new("米1").record[3]}
+#		assert_equal("米", Gotei.new("米").record[3])
+#		assert_raise(RuntimeError){Gotei.new("米1").record[3]}
 
 #		p Gotei.new("米").record
 
-		assert_equal("あまらんさす", Gotei.new("あまらんさす").record[3])
-		assert_equal("加糖練乳", Gotei.new("コンデンスミルク").record[5])
+#		assert_equal("あまらんさす", Gotei.new("あまらんさす").record[3])
+#		assert_equal("加糖練乳", Gotei.new("コンデンスミルク").record[5])
 
 #		p Gotei.new("あまらんさす").record
 #		assert_equal("こめ", Names.new("米").custom_name)
