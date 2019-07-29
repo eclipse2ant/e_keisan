@@ -18,14 +18,14 @@ class Shokuhin
 	end
 
 
-	def custom_name
-		@record[4].strip
-	end
+#	def custom_name
+#		@record[4].strip
+#	end
 
 
-	def exact_name
-		@record[5].strip
-	end
+#	def exact_name
+#		@record[5].strip
+#	end
 		
 
 	def seibun

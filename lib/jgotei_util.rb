@@ -46,7 +46,7 @@ module Worksheet
       return nil
     elsif
       type=cell.getCellType()
-      p type
+#      p type
       if type == 0
         return cell.getNumericCellValue
       elsif type == 1
@@ -56,9 +56,16 @@ module Worksheet
   end
 
 	def	trans(s)
-		s.sub(/Tr/,"0").sub(/Tr/,"0").sub(/-/,"0")
-			.delete("()（）").to_f	
+		if s =~ /Tr/ || s =~ /-/
+			return 0
+		elsif s =~ /\(*(\d+).(\d+)\)*/
+			return "#{$1}.#{$2}".to_f
+		elsif s =~ /\(*(\d+)\)*/
+			return "#{$1}".to_i
+		else return s
+		end
 	end
+
 end
 
 
@@ -85,7 +92,6 @@ include Apath
   def get_sheet(excel,filename)
     workBook= XSSFWorkbook.new(filename)
     sheet = workBook.getSheetAt(0)
-#    p sheet
 #    p sheet
     sheet.extend Worksheet
     return sheet	
