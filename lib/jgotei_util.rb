@@ -50,10 +50,15 @@ module Worksheet
       if type == 0
         return cell.getNumericCellValue
       elsif type == 1
-        return cell.getStringCellValue
+        return trans(cell.getStringCellValue)
       end
     end
   end
+
+	def	trans(s)
+		s.sub(/Tr/,"0").sub(/Tr/,"0").sub(/-/,"0")
+			.delete("()（）").to_f	
+	end
 end
 
 
@@ -69,7 +74,7 @@ module GoteiUtil
 #Gotei_file='計算しましょ　「五訂成分」.xls'
 #Gotei_file='計算しましょ　「五訂増補版」.xls'
 #Gotei_file='計算しましょ　「五訂増補版」.xlsx'
-Gotei_file='nanatei_1.xlsx'
+Gotei_file='nanatei-1.xlsx'
 
 include Apath
 
