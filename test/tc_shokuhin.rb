@@ -12,15 +12,15 @@ class TestShokuhin < Test::Unit::TestCase
 
 	def test_simple
 		assert_raise(RuntimeError){Shokuhin.new("米1").name}
-		assert_equal("米", Shokuhin.new("米").custom_name)
-		assert_equal("米", Shokuhin.new("米").name)
-		assert_equal(Kome_exact, Shokuhin.new("米").exact_name)
-		assert_equal(Kome_seibun, Shokuhin.new("米").seibun)
-		assert_equal("おしむぎ", Shokuhin.new("おしむぎ").name)
-		assert_equal("コンデンスミルク", Shokuhin.new("コンデンスミルク").name)
-		assert_equal("バター",Shokuhin.new("バター").name)
-		assert_equal("押麦", Shokuhin.new("おしむぎ").custom_name)
-		assert_equal(Amaran_seibun, Shokuhin.new("あまらんさす").seibun)
+		assert_equal(1083, Shokuhin.new("米").number)
+#		assert_equal("米", Shokuhin.new("米").name)
+#		assert_equal(Kome_exact, Shokuhin.new("米").exact_name)
+#		assert_equal(Kome_seibun, Shokuhin.new("米").seibun)
+#		assert_equal("おしむぎ", Shokuhin.new("おしむぎ").name)
+#		assert_equal("コンデンスミルク", Shokuhin.new("コンデンスミルク").name)
+#		assert_equal("バター",Shokuhin.new("バター").name)
+#		assert_equal("押麦", Shokuhin.new("おしむぎ").custom_name)
+#		assert_equal(Amaran_seibun, Shokuhin.new("あまらんさす").seibun)
 #p		Shokuhin.new("バター")
 #p		Shokuhin.new("おしむぎ")
 #p		Shokuhin.new("米").name
@@ -28,14 +28,14 @@ class TestShokuhin < Test::Unit::TestCase
 #p		Shokuhin.new("米").exact_name
 #p			Shokuhin.new("米").seibun
 #p			Shokuhin.new("あまらんさす").seibun
-			Shokuhin.new("アイスクリーム").seibun
-			Shokuhin.new("ソフトクリーム").seibun
+#			Shokuhin.new("アイスクリーム").seibun
+#			Shokuhin.new("ソフトクリーム").seibun
 #p			Shokuhin.new("みず").seibun
 	end
 
-	def test_v_seibun
-p		Shokuhin.new("アイスクリーム").v_seibun
-p		Shokuhin.new("米").v_seibun
-p 		Shokuhin.new("水").v_seibun
-	end
+#	def test_v_seibun
+#p		Shokuhin.new("アイスクリーム").v_seibun
+#p		Shokuhin.new("米").v_seibun
+#p 		Shokuhin.new("水").v_seibun
+#	end
 end

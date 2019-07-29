@@ -19,17 +19,17 @@ class Shokuhin
 
 
 	def number
-		@record[2].i
+		@record[1].to_i
 	end
 
 
-#	def exact_name
-#		@record[5].strip
-#	end
+	def exact_name
+		@record[3].strip
+	end
 		
 
 	def seibun
-		@record[6,42]
+		@record[4,66]
 	end
 
 	def v_seibun
