@@ -58,7 +58,7 @@ module Worksheet
 	def	trans(s)
 		if s =~ /Tr/ || s =~ /-/
 			return 0
-		elsif s =~ /\(*(\d+).(\d+)\)*/
+		elsif s =~ /\(*(\d+)\.(\d+)\)*/
 			return "#{$1}.#{$2}".to_f
 		elsif s =~ /\(*(\d+)\)*/
 			return "#{$1}".to_i
