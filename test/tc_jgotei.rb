@@ -14,10 +14,10 @@ class TestGotei < Test::Unit::TestCase
 
 		p Gotei.new("米").record
 
-	assert_equal("アマランサス　玄穀　", Gotei.new("アラマンサス").record[3])
+	assert_equal("アマランサス　玄穀　", Gotei.new("アマランサス").record[3])
 		assert_equal("＜牛乳及び乳製品＞（練乳類）　加糖練乳　　　", Gotei.new("コンデンスミルク").record[3])
 	p Gotei.new("コンデンスミルク").record 
-		p Gotei.new("アラマンサス").record
+		p Gotei.new("アマランサス").record
 		assert_equal(1083,  Gotei.new("米").record[1].to_i)
 		assert_equal(1006, Gotei.new("押麦").record[1].to_i)
 		assert_equal(18022, Gotei.new("フライ済み冷凍ミンチカツ").record[1].to_i)

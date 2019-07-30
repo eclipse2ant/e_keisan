@@ -24,15 +24,15 @@ class TestShokuhin < Test::Unit::TestCase
 		assert_equal("バター",Shokuhin.new("バター").name)
 		p Shokuhin.new("バター").exact_name
 		assert_equal(1006, Shokuhin.new("おしむぎ").number)
-		p Shokuhin.new("アラマンサス").seibun
-		assert_equal(Amaran_seibun, Shokuhin.new("アラマンサス").seibun)
+		p Shokuhin.new("アマランサス").seibun
+		assert_equal(Amaran_seibun, Shokuhin.new("アマランサス").seibun)
 		p	Shokuhin.new("バター")
 #p		Shokuhin.new("おしむぎ")
 #p		Shokuhin.new("米").name
 #p		Shokuhin.new("米").number
 #p		Shokuhin.new("米").exact_name
 #p			Shokuhin.new("米").seibun
-#p			Shokuhin.new("アラマンサス").seibun
+#p			Shokuhin.new("アマランサス").seibun
 			p Shokuhin.new("アイスクリーム").seibun
 #			Shokuhin.new("ソフトクリーム").seibun
 #p			Shokuhin.new("みず").seibun
