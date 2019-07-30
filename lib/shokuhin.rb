@@ -5,7 +5,6 @@
 require 'jgotei'
 require 'matrix'
 
-
 class Shokuhin
 
 	def initialize(name)
@@ -27,9 +26,22 @@ class Shokuhin
 		@record[3].strip
 	end
 		
+include Apath
+
+	def dm
+#		p number
+		File.open(apath("dm.list"),"r:utf-8").each do |s|
+			list = s.chop.split(',')
+#			p list
+			if number == list[0].to_i
+				return list[3].to_i
+			end
+		end
+		return nil
+	end	
 
 	def seibun
-		@record[4,66]
+		@record[4,66].insert(0,dm)
 	end
 
 	def v_seibun
