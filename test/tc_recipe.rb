@@ -27,11 +27,11 @@ class TestRecipe < Test::Unit::TestCase
 		assert_equal("アマランサス  50.0g\nごはん  300.0g\nこれはテストです", r1.to_s)
 		assert_equal(2,r1.person)
 		assert_equal(r1.energy,r1.v_seibun[0])
-#		assert_equal(r1.energy_per_person,r1.v_seibun_per_person[0])
-#		p r.energy_per_person
-#		p r1.energy_per_person
-#		puts r.to_s
-#		p r1.v_seibun
-#		p r1.v_seibun_per_person
+		assert_equal(r1.energy_per_person,r1.v_seibun_per_person[0])
+		p r.energy_per_person
+		p r1.energy_per_person
+		puts r.to_s
+		p r1.v_seibun
+		p r1.v_seibun_per_person
 	end
 end
