@@ -20,12 +20,12 @@ def run
 		  	data << row
  			end
 		end
-		for i in 0..data.length-2 do
-			unless data[i][0]==nil 
-				if data[i][0] == data[i+1][0]
-					puts data[i].join(",")
-					if i==data.length-2 || data[i+1]!=data[i+2]
-						puts data[i+1].join(",")
+		unless data[0][0]==nil
+			puts data[0].join(",") 
+			for i in 1..data.length-2 do
+				unless data[i][0]==nil
+					if data[i][0] != data[i-1][0]
+						puts data[i].join(",")
 					end
 				end
 			end
