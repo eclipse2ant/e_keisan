@@ -5,9 +5,10 @@
 $:.unshift File.expand_path("tool", ENV['E_KEISAN'])
 require 'tool'
 
+d=[]
 ARGV.each do |f|
 	data = read_file(f)
-	p data
+	d<< data
 end
-
+p d[1][5]
 
