@@ -35,23 +35,30 @@ while  j < d[1].length do
 	end
 	j=j+kk
 	i=0
-	while  i<d[0].length-l do
-		puts i
-		puts j
-		p d[1][j][3]
-		p d[0][i+l][3]
-		if  d[0][i+l][3]!=d[1][j][3]
+	while  i<d[0].length-l && j<d[1].length do
+#		puts i
+#		puts j-1
+#		p d[1][j-1][3]
+#		p d[0][i+l][3]
+		if  d[0][i+l][3].to_i >  d[1][j-1][3].to_i
+			l=i+l
+			break
+		elsif  d[0][i+l][3].to_i < d[1][j-1][3].to_i
 			i=i+1
+#			p "a"
 			next
 		elsif d[0][i+l][0]==""
 			i=i+1
+#			p 'b'
 			next
 		else
+#			p holder
+#			p d[0][i+l][0]
 			unless holder.include? d[0][i+l][0]
 				puts d[0][i+l].join(',')
 			end
+			i=i+1
 		end	
-		l=i+l
 	end
 end	
 
