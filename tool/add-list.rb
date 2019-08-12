@@ -11,33 +11,47 @@ ARGV.each do |f|
 	d<< data
 end
 l=0
-for j in 0...d[1].length-1 do
-	unless d[1][j][0]==""
-		hloder=[]
-		for k in 0...d[1].length-(j+1)
-			unless d[1][j+k][0]==""
-				if d[1][j+k][0]==d[1][j]
-					holder<< d[1][j+k][0]
-					puts d[1][j+k].join(',')
-					k++
-				end
+j=0
+while  j < d[1].length do
+	holder=[]
+	kk=0
+	for k in 0..d[1].length-(j+1) do
+		unless  d[1][j+k][0]==""
+#			puts  d[1][j+k][0] 
+			if d[1][j+k][0]==d[1][j][0] 
+				holder<< d[1][j+k][0]
+				puts d[1][j+k].join(',')
+			end		
+		else
+#			puts 'a' 
+			kk=k
+			break
+		end
+#		puts k
+	end
+#	puts 'b'
+	if kk==0 
+		kk=1
+	end
+	j=j+kk
+	i=0
+	while  i<d[0].length-l do
+		puts i
+		puts j
+		p d[1][j][3]
+		p d[0][i+l][3]
+		if  d[0][i+l][3]!=d[1][j][3]
+			i=i+1
+			next
+		elsif d[0][i+l][0]==""
+			i=i+1
+			next
+		else
+			unless holder.include? d[0][i+l][0]
+				puts d[0][i+l].join(',')
 			end
-			j=j+k
-		end
-		for i in 0...d[0].length-(l+1) do
-			unless d[0][i+l][1]==d[1][j][4]
-				i++
-				next
-			elsif d[0][i+l][0]==""
-				i++
-				next
-			else
-				unless holder.include? d[0][i+l][0]
-					puts d[0][i+l].join(',')
-				end
-			end	
-			l=i+1+l
-		end
+		end	
+		l=i+l
 	end
 end	
 
