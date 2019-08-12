@@ -24,9 +24,6 @@ while  j < d[1].length do
 			end		
 		else
 #			puts 'a' 
-			if holder==[]
-				puts d[1][j+k].join(',')
-			end
 			kk=k
 			break
 		end
@@ -51,6 +48,7 @@ while  j < d[1].length do
 #			p "a"
 			next
 		elsif d[0][i+l][0]==""
+			puts d[1][j-1].join(',')
 			i=i+1
 #			p 'b'
 			next
