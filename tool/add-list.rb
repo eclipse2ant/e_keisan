@@ -24,6 +24,9 @@ while  j < d[1].length do
 			end		
 		else
 #			puts 'a' 
+			if holder==[]
+				puts d[1][j+k].join(',')
+			end
 			kk=k
 			break
 		end
@@ -55,7 +58,10 @@ while  j < d[1].length do
 #			p holder
 #			p d[0][i+l][0]
 			unless holder.include? d[0][i+l][0]
-				puts d[0][i+l].join(',')
+				d[1][j-1].shift
+				d[1][j-1].unshift(d[0][i+l][0])
+				puts d[1][j-1].join(',')
+#				puts 'c'
 			end
 			i=i+1
 		end	
