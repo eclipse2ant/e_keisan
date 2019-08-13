@@ -18,12 +18,9 @@ while  j < d[1].length do
 	for k in 0..d[1].length-(j+1) do
 		unless  d[1][j+k][0]==""
 #			puts  d[1][j+k][0] 
-			if d[1][j+k][1]==d[1][j][1] 
+			if d[1][j+k][0]==d[1][j][0] 
 				holder<< d[1][j+k][0]
 				puts d[1][j+k].join(',')
-			else
-				kk=k
-				break
 			end		
 		else
 #			puts 'a' 
