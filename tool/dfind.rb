@@ -4,8 +4,8 @@
 require 'csv'
 #require 'jcode'
 
-NUM=3
-
+#NUM=3
+NUM=1
 def check_usage   
   if ARGV.length == 0 
 		puts "Usage: #{File.basename($0)} filename"
