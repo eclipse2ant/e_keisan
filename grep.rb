@@ -11,11 +11,12 @@ end
 
 check_usage
 str=ARGV.shift
-reg=Regexp.new(str)
+str_u=str.encode("UTF-8")
+reg=Regexp.new(str_u)
 begin
-	ARGF.each do |line|
+	ARGF.each do |line|	
 #  	if line =~ /#{str}/
-  	if reg =~ line
+  	if reg =~ line.encode
 #   	print "#{ARGF.filename} #{ARGF.file.lineno}: #{line}"
     	print "#{line}"
   	end
