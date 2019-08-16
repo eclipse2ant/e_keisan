@@ -5,6 +5,49 @@
 $:.unshift File.expand_path("tool", ENV['E_KEISAN'])
 require 'tool'
 
+def list_write(d,j,holder)
+	i=0
+	l=0
+	while  i<d[0].length && j<d[1].length do
+#		puts i
+#		puts j-1
+#		p d[1][j-1][0]
+#		p d[0][i][0]
+		if  d[0][i][3] !=  d[1][j-1][3]
+			i=i+1
+#			p "a"
+			next
+		elsif d[0][i][0]==""
+#			p d[1][j-1][0]
+#			p d[0][i][0]
+			if d[1][j-1][0]==""
+				puts d[1][j-1].join(',')
+#				puts "bbb"
+			end
+#			puts "bb"
+			i=i+1
+			l=l+1
+#			p 'b'
+			next
+		else
+#			p holder
+#			p d[0][i+l][0]
+			unless holder.include? d[0][i][0]
+				d[1][j-1].shift
+				d[1][j-1].unshift(d[0][i][0])
+				puts d[1][j-1].join(',')
+#				puts 'c'
+			end
+			i=i+1
+			l=l+1
+		end	
+	end
+  if l==0 && holder == []
+    puts d[1][j-1].join(',')
+#     puts "cc"
+  end
+end
+
 d=[]
 ARGV.each do |f|
 	data = read_file(f)
@@ -21,6 +64,11 @@ while  j < d[1].length do
 			if d[1][j+k][3]==d[1][j][3] 
 				holder<< d[1][j+k][0]
 				puts d[1][j+k].join(',')
+#				puts "aa"
+				if j+k+1 ==d[1].length
+					kk=k+1
+					break
+				end
 			else
 				kk=k
 				break
@@ -37,36 +85,8 @@ while  j < d[1].length do
 		kk=1
 	end
 	j=j+kk
-	i=0
-	while  i<d[0].length-l && j<d[1].length do
-#		puts i
-#		puts j-1
-#		p d[1][j-1][3]
-#		p d[0][i+l][3]
-		if  d[0][i+l][3].to_i >  d[1][j-1][3].to_i
-			l=i+l
-			break
-		elsif  d[0][i+l][3].to_i < d[1][j-1][3].to_i
-			i=i+1
-#			p "a"
-			next
-		elsif d[0][i+l][0]==""
-			puts d[1][j-1].join(',')
-			i=i+1
-#			p 'b'
-			next
-		else
-#			p holder
-#			p d[0][i+l][0]
-			unless holder.include? d[0][i+l][0]
-				d[1][j-1].shift
-				d[1][j-1].unshift(d[0][i+l][0])
-				puts d[1][j-1].join(',')
-#				puts 'c'
-			end
-			i=i+1
-		end	
-	end
+	
+	list_write(d,j,holder)
 end	
 
 
