@@ -2,9 +2,44 @@
 # encoding: utf-8
 
 require 'csv'
+require 'optparse'
 
 #NUM=3
 NUM=1
+
+class CatArguments < Hash
+	def initialize(args)
+		super()
+		opts = OptionParser.new do |opts|
+			opts.banner = "Usage: #$0 [options]"
+			opts.on('-n', '--number [NUMBER]', 'field index number') do |number|
+				self[:index_number] = number
+#				p number
+			end
+			opts.on_tail('-h', '--help', 'display this help and exit') do
+				puts opts
+				exit
+			end
+		end
+    begin
+      opts.parse!(args)
+    rescue
+      $stderr.puts  $!
+    end
+	end
+end
+
+args = CatArguments.new(ARGV)
+
+#p args[:index_number]
+unless args[:index_number].nil?
+	index_n=args[:index_number].to_i
+else
+	index_n=NUM
+end
+
+#p index_n 
+#p ARGV
 
 ARGV.each do |f|
   data=[]
@@ -22,9 +57,9 @@ ARGV.each do |f|
     for k in 1..data.length-1 do
 #       puts k
 #      puts data[i+k].join(',')
-			if data[i][NUM] == data[i+k][NUM]
-#        puts data[i][NUM]
-#        puts data[i+k][NUM]
+			if data[i][index_n] == data[i+k][index_n]
+#        puts data[i][index_n]
+#        puts data[i+k][index_n]
         clip<<data[i+k-1]
 #        p clip
         l=1
