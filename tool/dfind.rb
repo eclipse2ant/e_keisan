@@ -2,41 +2,88 @@
 # encoding: utf-8
 
 require 'csv'
-#require 'jcode'
+require 'optparse'
 
 #NUM=3
 NUM=1
-def check_usage   
-  if ARGV.length == 0 
-		puts "Usage: #{File.basename($0)} filename"
-    exit
-  end
-end
 
-def run
-  ARGV.each do |f|
-  	data=[]
-		CSV.open(f,'r') do |csv|
-			csv.each do |row|
-		  	data << row
- 			end
-		end
-		for i in 0..data.length-2 do
-			unless data[i][NUM]==nil 
-				if data[i][NUM] == data[i+1][NUM]
-					puts data[i].join(",")
-					if i==data.length-2 || data[i+1]!=data[i+2]
-						puts data[i+1].join(",")
-					end
-				end
+class CatArguments < Hash
+	def initialize(args)
+		super()
+		opts = OptionParser.new do |opts|
+			opts.banner = "Usage: #$0 [options]"
+			opts.on('-n', '--number [NUMBER]', 'field index number') do |number|
+				self[:index_number] = number
+#				p number
+			end
+			opts.on_tail('-h', '--help', 'display this help and exit') do
+				puts opts
+				exit
 			end
 		end
+    begin
+      opts.parse!(args)
+    rescue
+      $stderr.puts  $!
+    end
 	end
 end
 
+args = CatArguments.new(ARGV)
 
-if $0 == __FILE__ 
-#  check_usage 
-	run
+#p args[:index_number]
+unless args[:index_number].nil?
+	index_n=args[:index_number].to_i
+else
+	index_n=NUM
 end
+
+#p index_n 
+#p ARGV
+
+ARGV.each do |f|
+  data=[]
+	CSV.open(f,'r') do |csv|
+		csv.each do |row|
+		  data << row
+ 		end
+	end
+  i=0
+  l=0
+	while i < data.length-1  do
+#    puts i
+    clip=[]
+    kk=0
+    for k in 1..data.length-1 do
+#       puts k
+#      puts data[i+k].join(',')
+			if data[i][index_n] == data[i+k][index_n]
+#        puts data[i][index_n]
+#        puts data[i+k][index_n]
+        clip<<data[i+k-1]
+#        p clip
+        l=1
+        kk=kk+1
+      else 
+        if clip!=[]
+          clip<<data[i+k-1]
+#          p 'a'
+        end
+        l=1
+        kk=kk+1
+#        p 'b'
+        break
+      end
+    end
+    i=i+kk
+    if l==0
+      i=i+1
+    end
+    clip.each do |s|
+      puts s.join(',')
+    end
+ end
+end
+
+
 
