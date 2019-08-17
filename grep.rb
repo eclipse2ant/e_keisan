@@ -27,7 +27,8 @@ end
 args = GrepArguments.new(ARGV)
 
 str=ARGV.shift
-reg=Regexp.new(str)
+str_u=str.encode("UTF-8")
+reg=Regexp.new(str_u)
 begin
 	ARGF.each do |line|
   	if reg =~ line
