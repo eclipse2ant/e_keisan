@@ -17,6 +17,9 @@ class CatArguments < Hash
 				self[:index_number] = number
 #				p number
 			end
+			opts.on('-p', '--preview', 'preview adding lines') do
+				self[:preview] = true
+			end
 			opts.on_tail('-h', '--help', 'display this help and exit') do
 				puts opts
 				exit
@@ -49,6 +52,6 @@ ARGV.each do |f|
 	d<< data
 end
 
-add_list(d,index_n)
+add_list(args,d,index_n)
 
 
