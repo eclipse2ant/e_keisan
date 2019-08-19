@@ -7,7 +7,7 @@ $:.unshift File.expand_path("tool", ENV['E_KEISAN'])
 require 'tool'
 
 
-def list_write(args,d,j,m,holder)
+def list_write(d,j,m,holder)
 	i=0
 	l=0
 	while  i<d[0].length && j<d[1].length do
@@ -23,10 +23,8 @@ def list_write(args,d,j,m,holder)
 #			p d[1][j-1][0]
 #			p d[0][i][0]
 			if d[1][j-1][0]==""
-				unless args[:preview]
-					puts d[1][j-1].join(',')
-#					puts "bbb"
-				end
+				puts d[1][j-1].join(',')
+#				puts "bbb"
 			end
 #			puts "bb"
 			i=i+1
@@ -47,14 +45,12 @@ def list_write(args,d,j,m,holder)
 		end	
 	end
   if l==0 && holder == []
-		unless args[:preview]
-    	puts d[1][j-1].join(',')
+    puts d[1][j-1].join(',')
 #     puts "cc"
-		end
   end
 end
 
-def add_list(args,d,m)
+def add_list(d,m)
 	l=0
 	j=0
 	while  j < d[1].length do
@@ -65,10 +61,8 @@ def add_list(args,d,m)
 #				puts  d[1][j+k][0] 
 				if d[1][j+k][m]==d[1][j][m] 
 					holder<< d[1][j+k][0]
-					unless args[:preview]
-						puts d[1][j+k].join(',')
-#						puts "aa"
-					end
+					puts d[1][j+k].join(',')
+#					puts "aa"
 					if j+k+1 ==d[1].length
 						kk=k+1
 						break
@@ -90,7 +84,7 @@ def add_list(args,d,m)
 		end
 		j=j+kk
 	
-		list_write(args,d,j,m,holder)
+		list_write(d,j,m,holder)
 	end	
 end
 
