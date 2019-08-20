@@ -3,7 +3,7 @@
 
 #$:.unshift File.join(File.dirname(__FILE__),"tool")
 $:.unshift File.expand_path("tool", ENV['E_KEISAN'])
-require 'addlist'
+require 'addlist_bak'
 require 'index_number'
 
 NUM=1
