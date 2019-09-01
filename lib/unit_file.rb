@@ -32,7 +32,8 @@
 '適宜'=>'tekigi',
 
 '少々'=>'syosyo',
-'小#パック'=>'syo_pakku'
+'小#パック'=>'syo_pakku',
+'#パック'=>'_pakku'
 
 }
 
