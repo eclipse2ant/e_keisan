@@ -85,11 +85,11 @@ Gotei_file='nanatei-1.xlsx'
 
 include Apath
 
-  def get_filename
-    FileInputStream.new(apath(Gotei_file))
+  def get_filename(rev)
+    FileInputStream.new(apath("nanatei-#{rev}.xlsx"))
   end
 
-  def get_sheet(excel,filename)
+  def get_sheet(filename)
     workBook= XSSFWorkbook.new(filename)
     sheet = workBook.getSheetAt(0)
 #    p sheet

@@ -53,29 +53,43 @@ end
 #p ARGV
 
 
+def write_list(d)
+  d.each do |list|
+    puts list.join(',')
+  end
+end
 
 def ins_update(args,d,m)
   i=0
 	j=0
+  holder=[]
   for i in 0..d[0].length-1 do
     l=0
     for j in 0..d[1].length-1 do
 			if d[1][j][m]==d[0][i][m]
         if args[:update]==true
           puts d[0][i].join(',')
-        elsif args[:insert] !=true && args[:update]!=true
-				  d[0][i].shift
-				  d[0][i].unshift(d[1][j][0])
-				  puts d[0][i].join(',')
+        end
+        k=0
+        for k in 2..4 do 
+				  d[1][j][k]=d[0][i][k]
+        end
+        if args[:preview]==true
+				  puts d[1][j].join(',')
         end
         l=l+1
-      elsif args[:update]!=true && args[:preview]!=true && args[:insert]!=true 
-        puts d[1][j].join(',')
       end
     end
-    if l==0 && args[:preview]!=true&& args[:update]!=true
-      puts d[0][i].join(',')
+    if l==0
+      holder << d[0][i]
+      if args[:insert]==true
+        puts d[0][i].join(',')
+      end
     end
+  end
+  if args[:preview]!=true && args[:update]!=true && args[:insert]!=true
+    write_list(d[1])
+    write_list(holder)
   end
 end
           
@@ -86,7 +100,6 @@ ARGV.each do |f|
 	data = read_file(f)
 	d<< data
 end
-
 ins_update(args,d,index_n)
 
 
