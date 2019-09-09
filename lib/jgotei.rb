@@ -36,7 +36,7 @@ class Gotei
       seibun = s.chop.split(',')
       if name.strip == seibun[0]
 	@record = []
-	x = seibun[3].to_i + 8 
+	x = seibun[4].to_i + 8 
 #	puts seibun[0]
 	1.upto(67) do |y|
 #         p sheet[x,y]
