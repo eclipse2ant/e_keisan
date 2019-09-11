@@ -12,8 +12,17 @@ require 'jrev_util'
 include RevUtil
 
 p ARGV[0]
-filename = get_filename(ARGV[0])
-sheet=SheetHolder.instance.sheet
-sheet=get_sheet(filename)
-sheet[2,6]="501"
-p sheet[2,6]
+
+begin
+  ifile = get_filename(ARGV[0])
+  wb=get_workbook(ifile)
+  sh=SheetHolder.instance.sheet
+  sh=get_sheet(wb)
+  sh[2,6]="501"
+  p sh[2,6]
+  ofile=put_filename(ARGV[0])
+  wb.write(ofile)
+ensure
+  ifile.close
+  ofile.close
+end

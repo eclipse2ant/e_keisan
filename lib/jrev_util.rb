@@ -14,6 +14,7 @@ require 'poi-excelant-3.17.jar'
 require 'xmlbeans-2.6.0.jar'
 
 java_import 'java.io.FileInputStream'
+java_import 'java.io.FileOutputStream'
 java_import 'org.apache.poi.hssf.usermodel.HSSFWorkbook'
 java_import 'org.apache.poi.hssf.usermodel.HSSFSheet'
 java_import 'org.apache.poi.hssf.usermodel.HSSFRow'
@@ -97,13 +98,21 @@ include Apath
     FileInputStream.new(apath(f))
   end
 
-  def get_sheet(filename)
-    workBook= XSSFWorkbook.new(filename)
-    sheet = workBook.getSheetAt(0)
+  def get_workbook(filename)
+    XSSFWorkbook.new(filename)
+  end    
+
+  def get_sheet(wb)
+      sheet = wb.getSheetAt(0)
 #    p sheet
     sheet.extend Worksheet
     return sheet	
   end
+
+  def put_filename(f)
+    FileOutputStream.new(apath(f) , true)
+  end
+
 
 end
 
