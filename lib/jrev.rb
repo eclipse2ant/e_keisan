@@ -30,7 +30,7 @@ begin
   for i in 67..2240 do
     list<< [sh[i,1],sh[i,5]]
   end
-  p list[0][1]
+#  p list[0][1]
 ensure
   ifile.close
 #  ofile.close
