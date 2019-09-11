@@ -51,7 +51,7 @@ module Worksheet
       if type == 0
         return cell.getNumericCellValue
       elsif type == 1
-        return trans(cell.getStringCellValue)
+        return cell.getStringCellValue
       end
     end
   end
