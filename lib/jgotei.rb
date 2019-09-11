@@ -12,20 +12,34 @@ class Gotei
 
   include GoteiUtil
   def initialize(name)
-    set_record(name)
+    filenames = get_filenames
+    begin
+      sheets=SheetHolders.instance.sheets
+#      p sheets
+      unless  sheets==nil        
+        set_record(name,sheets)  
+      else
+        Excel.runDuring do |excel|
+          sheets=get_sheets(excel,filenames)
+#          p sheet;
+          set_record(name,sheets)
+        end
+      end
+    ensure
+      filesclose(filenames)
+    end
   end
 
-  def set_record(name)
+  def set_record(name,sheets)
     File.open(apath("data/nanatei.list"),"r:utf-8").each do |s|
       seibun = s.chop.split(',')
       if name.strip == seibun[0]
 	      @record = []
 	      x = seibun[4].to_i + 8
         rev = seibun[3].to_i
-        filename=get_filename(rev)
-        sheet=get_sheet(filename)
-#        p sheet;
-#        puts seibun[0]
+        sheet=sheets[rev-1]
+#        p sheet
+#         puts seibun[0]
 	      1.upto(67) do |y|
 #         p sheet[x,y]
 	        @record << sheet[x,y]

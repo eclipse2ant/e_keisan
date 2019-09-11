@@ -21,8 +21,8 @@ list=[]
 begin
   ifile = get_filename(ARGV[0])
   wb=get_workbook(ifile)
-#  sh=SheetHolder.instance.sheet
   sh=get_sheet(wb)
+#  SheetHolder.instance.sheet=sh
   i=0
   for i in 6..58 do
     list<< [sh[i,1],sh[i,5]]
@@ -30,7 +30,7 @@ begin
   for i in 67..2240 do
     list<< [sh[i,1],sh[i,5]]
   end
-#  p list[0][1]
+#  p list
 ensure
   ifile.close
 #  ofile.close
@@ -39,11 +39,11 @@ end
 begin
   ifile = get_filename(ARGV[1])
   wb=get_workbook(ifile)
-#  sh=SheetHolder.instance.sheet
   sh=get_sheet(wb)
-#  p sh[7,50]
+#  SheetHolder.instance.sheet=sh
+  p sh[7,50]
 #  sh[9,51]=list[0][1]
-#  p sh[9,51]
+  p sh[10,51]
   list.each do |d|
     j=0
     for j in 9..2199 do

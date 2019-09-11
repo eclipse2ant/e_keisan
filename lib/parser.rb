@@ -277,8 +277,13 @@ class Parser
 	include GoteiUtil
 
 	def parse(f=ARGF)
+    filenames=get_filenames
 		recipe_list=nil
-		recipe_list=Lines.new(f).paragraphBuilder.recipeBuilder
+    Excel.runDuring do |excel|
+      s=get_sheets(excel,filenames)
+      SheetHolders.instance.sheets=s
+      recipe_list=Lines.new(f).paragraphBuilder.recipeBuilder
+    end
 	  recipe_list
 	end
 

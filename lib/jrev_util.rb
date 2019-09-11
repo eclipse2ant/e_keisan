@@ -50,8 +50,8 @@ module Worksheet
 #      p type
       if type == 0
         return cell.getNumericCellValue
-      elsif type == 1
-        return cell.getStringCellValue
+      elsif type == 1 
+        return trans(cell.getStringCellValue)
       end
     end
   end

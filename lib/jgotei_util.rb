@@ -69,12 +69,12 @@ module Worksheet
 end
 
 
-class SheetHolder
+class SheetHolders 
   include Singleton
 
-	@sheet
+	@sheets
 
-	attr_accessor :sheet
+	attr_accessor :sheets
 end
 
 module GoteiUtil
@@ -85,16 +85,32 @@ Gotei_file='nanatei-1.xlsx'
 
 include Apath
 
-  def get_filename(rev)
-    FileInputStream.new(apath("nanatei-#{rev}.xlsx"))
+  def get_filenames
+    rev=0
+    filenames=[]
+    for rev in 1..2 do
+      filenames << FileInputStream.new(apath("nanatei-#{rev}.xlsx"))
+    end
+    return filenames
   end
 
-  def get_sheet(filename)
-    workBook= XSSFWorkbook.new(filename)
-    sheet = workBook.getSheetAt(0)
-#    p sheet
-    sheet.extend Worksheet
-    return sheet	
+  def get_sheets(excel,filenames)
+    sheets=[]
+    for rev in 1..2 do
+      workBook= XSSFWorkbook.new(filenames[rev-1])
+      sheet=workBook.getSheetAt(0)
+#      p sheet
+      sheet.extend Worksheet
+      sheets << sheet
+    end
+    return sheets	
+  end
+ 
+
+  def filesclose(filenames)
+    filenames.each do |f|
+      f.close
+    end
   end
 
 end
