@@ -73,7 +73,7 @@ end
 
 
 if $0 == __FILE__ # (3)
-  check_usage 
+#  check_usage 
 	Manager.new().run
 end
 
