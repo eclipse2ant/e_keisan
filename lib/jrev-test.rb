@@ -11,7 +11,7 @@ require 'jrev_util'
 
 include RevUtil
 
-#p ARGV[1]
+p ARGV[0]
 
 
 
@@ -22,16 +22,11 @@ begin
   ifile = get_filename(ARGV[0])
   wb=get_workbook(ifile)
   sh=get_sheet(wb)
-  SheetHolder.instance.sheet=sh
-  i=0
-  for i in 6..58 do
-    list<< [sh[i,1],sh[i,5]]
-  end
-  for i in 67..2240 do
-    list<< [sh[i,1],sh[i,5]]
-  end
-  p list[0][1]
+#  SheetHolder.instance.sheet=sh
+    p sh[1,5]
+    p sh[2,5]
 ensure
   ifile.close
 #  ofile.close
 end
+

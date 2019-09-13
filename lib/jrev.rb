@@ -41,9 +41,9 @@ begin
   wb=get_workbook(ifile)
   sh=get_sheet(wb)
 #  SheetHolder.instance.sheet=sh
-  p sh[7,50]
+#  p sh[7,50]
 #  sh[9,51]=list[0][1]
-  p sh[10,51]
+#  p sh[10,51]
   list.each do |d|
     j=0
     for j in 9..2199 do
