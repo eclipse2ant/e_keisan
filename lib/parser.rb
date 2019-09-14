@@ -194,6 +194,7 @@ class RecipeList < List
 
 	def build(f)
 		f.each do |pg|		
+#			p pg
 			r=buildRecipe(pg)
 			self << r
 		end
@@ -214,7 +215,7 @@ class RecipeList < List
 		end
 		f.each do |ln|
 			subst(r,ln)
-		end				
+		end
 		return r
 	end
 
