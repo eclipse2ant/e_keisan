@@ -280,11 +280,17 @@ class Parser
 	def parse(f=ARGF)
     filenames=get_filenames
 		recipe_list=nil
-    Excel.runDuring do |excel|
-      s=get_sheets(excel,filenames)
-      SheetHolders.instance.sheets=s
+    sheets=SheetHolders.instance.sheets
+#      p sheets
+     unless  sheets==nil        
       recipe_list=Lines.new(f).paragraphBuilder.recipeBuilder
-    end
+     else
+    	Excel.runDuring do |excel|
+      	s=get_sheets(excel,filenames)
+      	SheetHolders.instance.sheets=s
+      	recipe_list=Lines.new(f).paragraphBuilder.recipeBuilder
+    	end
+		end
 	  recipe_list
 	end
 

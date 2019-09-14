@@ -26,12 +26,15 @@
 '#切れ'=>'_kire',
 '#合'=>'_go',
 '#かけ分'=>'_kakebun',
+'#かけ'=>'_kake',
 
 '適当'=>'tekitou',
 '適量'=>'tekiryo',
 '適宜'=>'tekigi',
 
 '少々'=>'syosyo',
+'小#パック'=>'syo_pakku',
+'#パック'=>'_pakku'
 
 }
 
