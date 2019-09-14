@@ -10,7 +10,8 @@ module VectorUtil
 
 	def gen_null_vector
 		x=[]
-		(0..68).each do 
+#		(0..68).each do 
+		(0..69).each do 
 			x<< 0
 		end 
 		return Vector.elements(x)
