@@ -48,7 +48,8 @@ class View
 			print"(タンパク質;#{recipe.v_seibun_per_person[3].roundoff(1)}g)" 
 			print "(塩分;#{recipe.v_seibun_per_person[52].roundoff(1)}g)" 
 			print "\n" 
-		print "(DM交換表; #{recipe.v_seibun_per_person.roundoff(1).to_a[62..68].join(' ')})" 
+#		print "(DM交換表; #{recipe.v_seibun_per_person.roundoff(1).to_a[62..68].join(' ')})" 
+		print "(DM交換表; #{recipe.v_seibun_per_person.roundoff(1).to_a[63..69].join(' ')})" 
 			print "\n\n"
 		end
 		puts "Total:#{@r_list.energy.roundoff(1)} kcal (#{@r_list.energy_per_person.roundoff(1)} kcal)"
@@ -56,7 +57,8 @@ class View
 		print "(タンパク質;#{@r_list.v_seibun_per_person[3].roundoff(1)}g)" 
 		print "(塩分;#{@r_list.v_seibun_per_person[52].roundoff(1)}g)"
 		print "\n" 
-		print "(DM交換表; #{@r_list.v_seibun_per_person.roundoff(1).to_a[62..68].join(' ')})" 
+#		print "(DM交換表; #{@r_list.v_seibun_per_person.roundoff(1).to_a[62..68].join(' ')})" 
+		print "(DM交換表; #{@r_list.v_seibun_per_person.roundoff(1).to_a[63..69].join(' ')})" 
 		print "\n\n"
 #		p @r_list.v_seibun_per_person
 #		p SEIBUN_NAME.length
