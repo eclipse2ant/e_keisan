@@ -66,9 +66,9 @@ include Apath
 		r1=Parser.new().parse(File.new(apath('pre_demo.txt')))
 		r2=Parser.new().parse(File.new(apath('sample/okara.txt')))
     assert_equal(1198.8,r1.energy)
-#		assert_equal(770.16,r2.energy_per_person.round(2))
-#		assert_equal(1198.8,r1.v_seibun[0])
-#		assert_equal(770.16,r2.v_seibun_per_person[0].round(2))
+		assert_equal(791.56,r2.energy_per_person.round(2))
+		assert_equal(1198.8,r1.v_seibun[0])
+		assert_equal(791.56,r2.v_seibun_per_person[0].round(2))
 
 		p r1.v_seibun
 		p r2.v_seibun_per_person
