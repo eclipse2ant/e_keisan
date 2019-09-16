@@ -65,6 +65,7 @@ include Apath
 	def test_parser
 		r1=Parser.new().parse(File.new(apath('pre_demo.txt')))
 		r2=Parser.new().parse(File.new(apath('sample/okara.txt')))
+		r3=Parser.new().parse(File.new(apath('demo.txt')))
     assert_equal(1198.8,r1.energy)
 		assert_equal(791.56,r2.energy_per_person.round(2))
 		assert_equal(1198.8,r1.v_seibun[0])
@@ -72,6 +73,8 @@ include Apath
 
 		p r1.v_seibun
 		p r2.v_seibun_per_person
+		p r3.v_seibun
+		p r3.v_seibun_per_person
 
 	end
 
