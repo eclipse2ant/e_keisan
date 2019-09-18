@@ -1,16 +1,19 @@
-まず、最初にJDKとJRubyのインストールを行います。
 
-http://barbra-coco.dyndns.org//eiyou/e_keisan-3/
+Javaがインストールされてない場合は
 
-から
-jdk-8u31-windows-x64.exe　（64bitの場合)
-jdk-8u31-windows-i586.exe　(32bitの場合)
-をダウンロードします。
 
-ダウンーロードをファイルをクリックして実行して、インストールして
+https://www.java.com/ja/download/
+
+
+
+でダウンーロードをファイルをクリックして実行して、インストールして
 ください。質問されたら「はい」を押してください。
 
-次に環境変数　JAVA_HOMEを設定します。
+インストールされてるかは、Windowsのシステムツールからコマンドプロンプ
+トを開いてjava と入力して、出力されていれば、インストールされてます。
+コマンドがないとか言われたら、インストールはされてません。
+
+
 
 「システムの詳細設定」を表示させてください表示のさせ方は、Windows OSご
 とに異なるので、Googleなどで「システムの詳細設定」をキーワードにして調
@@ -41,37 +44,112 @@ javac 1.8.0_31と表示されれば成功です。表示されない場合は、
 有効になっていません)。
 
 
-つぎに同じく
-http://barbra-coco.dyndns.org//eiyou/e_keisan-3/
+つぎに
 
-から
+https://www.jruby.org
 
-jruby_windows_x64_jre_9_0_0_0_pre1.exe　（64bitの場合)
-jruby_windows_9_0_0_0_pre1.exe　　(32bitの場合)
+から　JRubyをダウンローします。
 
-をダウンロードして、実行してください。今回は、自動でPATHに設定されます
-ので設定は不要です。
+https://www.jruby.org/#2
 
-最後に
-http://barbra-coco.dyndns.org//eiyou/e_keisan-3/
+の
 
-から
+1. Extract JRuby into a directory.
+2. Add that directory's bin subdirectory to the end of your path.
+3. Test it: jruby -v
 
-e_keisan-3-current.zip　をダウンローして、好きな場所で展開させてくださ
-い。すでに、実行されている場合は、必要ありません。(たいていは、このファイル
-を読んでいるときは、展開して、このファイルを読んでいるはずです)。
+を行います。
 
-環境変数　E_KEISAN　を　JAVA_HOMEを設定した時と同じ要領で、設定します
-。例えば、デスクトップ上に　e_keisan-3-current.zipを展開したのなら、
-C:\Users\自分のユーザー名\Desktop\e_keisan-3.0.3
+https://repo1.maven.org/maven2/org/jruby/jruby-dist/9.2.8.0/jruby-dist-9.2.8.0-bin.zip
 
-となります。自分のユーザー名はそれぞれのユーザー名がはいります。
-PATH変数の末尾に今度は、;%E_KEISAN%を追加します。
 
-なお、環境変数E_KEISANの設定やPATH変数への%E_KEISAN%の追加は、行なわく
-ても、プログラムは使えます。ただ実行する場所を移動させたいときは、必要
-となります。
+をダウンロードして、適当な場所に展開して、２を実行すればよいのですが、わからなければ
 
-keisan demo.txt　で、ちゃんと表示されれば、インストール成功です。
 
-　
+
+https://s3.amazonaws.com/jruby.org/downloads/9.2.8.0/jruby_windows_x64_9_2_8_0.exe
+
+（３２ビットの機械の場合は、https://s3.amazonaws.com/jruby.org/downloads/9.2.8.0/jruby_windows_9_2_8_0.exe　）
+
+をダウンロードして実行すれば、自動的にやってくれます。コマンドプロンプ
+トで３つまりjruby -v をやってちゃんと表示されれば、成功です。コマンド
+プロンプトは、インストール前のものはすべて閉じて、新たに開いて実行しな
+いと、インストールの結果が反映されないので、すべて閉じて、新たに開いて
+からテストを実行してください。
+
+
+つぎに、git をインストールします。
+
+https://github.com/git-for-windows/git/releases/download/v2.23.0.windows.1/Git-2.23.0-64-bit.exe
+
+（３２ビットの場合は　
+https://github.com/git-for-windows/git/releases/download/v2.23.0.windows.1/Git-2.23.0-32-bit.exe
+　）
+
+
+ダウンロードして、実行するとインストールされます。
+
+詳しくは　https://eng-entrance.com/git-install　　とか参照ください。
+
+インストール出来たら、スタートメニューから Git Bash  を起動します。するとちょっと変わったコマンドプロンプトが起動します。そこで
+
+cd Desktop
+
+として、あるいは、ご自分の好きなフォルダー（ディレクトリー）に移動して
+ください。
+
+そこで
+
+git clone https://github.com/eclipse2ant/e_keisan
+
+と実行すれば、e_keisan というフォルダーが作られます。このフォルダーの
+中身がコピペ君本体です。
+
+つぎに、環境変数E_KEISANを設定して、それをPATHに登録します。以下の作業
+を行います。
+
+
+「システムの詳細設定」を表示させてください表示のさせ方は、Windows OSご
+とに異なるので、Googleなどで「システムの詳細設定」をキーワードにして調
+べてください。
+
+
+環境変数というボタンをクリックして、「システムの環境変数」の「新規」を
+クリックします。（既にE_KEISANという変数が作られてる方は、変数の中か
+らE_KEISANを選んで編集ボタンを押してください。）
+
+変数名に　E_KEISAN　変数値に　例えば、cd Desktop を実行して
+
+gir clone  https://github.com/eclipse2ant/e_keisan
+
+ をしたのなら、C:\Users\自分のユーザー名\Desktop\e_keisan
+と入力してOKボタンを押してください。
+次に、変数名のPathを選択して、「変数」ボタンを押してください。変数値の
+文字の先頭に、%E_KEISAN%;　と追加してください。この時、既に書かれ
+てる内容を消さないように注意してください。間違ってけしても、「キャンセ
+ル」ボタンを押してやり直せば大丈夫です。
+
+注意してほしいのは、まだ設定した内容は、有効になっていません。いったん
+すべてのプログラムを終了させてから、すべてのプログラムのアクセサリーの
+中のコマンドプロンプトを起動させてpathと実行すれば、環境変数PATHの内容
+が確認できますし。setと入力すれば、すべての環境変数の内容が確認できま
+す。
+
+間違いを修正した場合は、一度すべてのプログラムを終了させて、再度、コマ
+ンドプロンプト起動し直して、確認を行ってください（でないと変更の内容が
+有効になっていません)。
+
+
+コマンドプロンプトを起動して、カレントディレクトリーをこの
+e_keisan にしてください。わからない場合は、e_keisanフォルダーのなかの
+cmd.exe〔黒いアイコンのもの）をクリックするとコマンドプロンプトが開き
+ます。以下このコマンドプロンプトで作業します。
+
+
+このプロンプト上で、　
+
+keisan demo.txt
+
+と打って実行すると。demo.txtの中身が計算されて、カロリー計算してと表示
+されれば、インストール成功です。
+
