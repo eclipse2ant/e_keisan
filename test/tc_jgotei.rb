@@ -8,11 +8,12 @@ require 'test/unit'
 class TestGotei < Test::Unit::TestCase
   def test_simple
     Gotei.new("米")
-#   assert_equal('1','1')
+   assert_equal('1','1')
 		assert_equal("こめ　［水稲穀粒］　精白米　うるち米　", Gotei.new("米").record[3])
 		assert_raise(RuntimeError){Gotei.new("米1").record[3]}
 
 		p Gotei.new("米").record
+		p Gotei.new("食パン").record
 
 	assert_equal("アマランサス　玄穀　", Gotei.new("アマランサス").record[3])
 		assert_equal("＜牛乳及び乳製品＞（練乳類）　加糖練乳　　　", Gotei.new("コンデンスミルク").record[3])
