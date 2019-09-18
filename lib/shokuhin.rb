@@ -41,7 +41,7 @@ include Apath
 	end	
 
 	def seibun
-		@record[4,66].insert(0,dm)
+		@record[4..-1].insert(0,dm)
 	end
 
 	def v_seibun

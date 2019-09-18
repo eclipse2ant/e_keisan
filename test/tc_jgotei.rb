@@ -22,5 +22,6 @@ class TestGotei < Test::Unit::TestCase
 		assert_equal(1006, Gotei.new("押麦").record[1].to_i)
 		assert_equal(18022, Gotei.new("フライ済み冷凍ミンチカツ").record[1].to_i)
 		p Gotei.new("フライ済み冷凍ミンチカツ").record[3]
+    p Gotei.new("こうぼ").record 
 	end
 end

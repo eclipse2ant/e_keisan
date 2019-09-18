@@ -194,6 +194,7 @@ class RecipeList < List
 
 	def build(f)
 		f.each do |pg|		
+#			p pg
 			r=buildRecipe(pg)
 			self << r
 		end
@@ -214,7 +215,7 @@ class RecipeList < List
 		end
 		f.each do |ln|
 			subst(r,ln)
-		end				
+		end
 		return r
 	end
 
@@ -277,14 +278,20 @@ class Parser
 	include GoteiUtil
 
 	def parse(f=ARGF)
-		filename = get_filename
+    filenames=get_filenames
 		recipe_list=nil
-		Excel.runDuring do |excel|
-			s=get_sheet(excel,filename)
-			SheetHolder.instance.sheet=s
-			recipe_list=Lines.new(f).paragraphBuilder.recipeBuilder
+    sheets=SheetHolders.instance.sheets
+#      p sheets
+     unless  sheets==nil        
+      recipe_list=Lines.new(f).paragraphBuilder.recipeBuilder
+     else
+    	Excel.runDuring do |excel|
+      	s=get_sheets(excel,filenames)
+      	SheetHolders.instance.sheets=s
+      	recipe_list=Lines.new(f).paragraphBuilder.recipeBuilder
+    	end
 		end
-	recipe_list
+	  recipe_list
 	end
 
 

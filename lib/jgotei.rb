@@ -12,41 +12,45 @@ class Gotei
 
   include GoteiUtil
   def initialize(name)
-    filename = get_filename
+    filenames = get_filenames
     begin
-      sheet=SheetHolder.instance.sheet
-#      p sheet
-      unless  sheet==nil	
-        set_record(name,sheet)  
+      sheets=SheetHolders.instance.sheets
+#      p sheets
+      unless  sheets==nil        
+        set_record(name,sheets)  
       else
         Excel.runDuring do |excel|
-          sheet=get_sheet(excel,filename)
+          sheets=get_sheets(excel,filenames)
 #          p sheet;
-          set_record(name,sheet)
+          set_record(name,sheets)
         end
       end
     ensure
-      filename.close
+      filesclose(filenames)
     end
   end
 
-
-  def set_record(name,sheet)
-    File.open(apath("nanatei.list"),"r:utf-8").each do |s|
+  def set_record(name,sheets)
+    hed=[8,9]
+    File.open(apath("data/nanatei.list"),"r:utf-8").each do |s|
       seibun = s.chop.split(',')
       if name.strip == seibun[0]
-	@record = []
-	x = seibun[3].to_i + 8 
-#	puts seibun[0]
-	1.upto(67) do |y|
+	      @record = []
+        rev = seibun[3].to_i
+	      x = seibun[4].to_i + hed[rev-1]
+        sheet=sheets[rev-1]
+#        p sheet
+#         puts seibun[0]
+#	      1.upto(67) do |y|
+	      1.upto(68) do |y|
 #         p sheet[x,y]
-	  @record << sheet[x,y]
-	end
+	        @record << sheet[x,y]
+	      end
         break
       end
     end
     if @record == nil
-	raise "#{name} が見つかりません\n" 
+	    raise "#{name} が見つかりません\n" 
     end
   end
   

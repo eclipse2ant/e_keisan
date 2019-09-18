@@ -4,14 +4,14 @@
 $:.unshift File.expand_path("java-lib", ENV['E_KEISAN'])
 
 require 'java'
-require 'commons-collections4-4.3.jar'
-require 'commons-compress-1.18.jar' 
-require 'poi-4.1.0.jar'
-require 'poi-ooxml-4.1.0.jar'
-require 'poi-ooxml-schemas-4.1.0.jar'
-require 'poi-scratchpad-4.1.0.jar'
-require 'poi-excelant-4.1.0.jar'
-require 'xmlbeans-3.1.0.jar'
+require 'commons-collections4-4.1.jar'
+#require 'commons-compress-1.18.jar' 
+require 'poi-3.17.jar'
+require 'poi-ooxml-3.17.jar'
+require 'poi-ooxml-schemas-3.17.jar'
+require 'poi-scratchpad-3.17.jar'
+require 'poi-excelant-3.17.jar'
+require 'xmlbeans-2.6.0.jar'
 
 java_import 'java.io.FileInputStream'
 java_import 'org.apache.poi.hssf.usermodel.HSSFWorkbook'
@@ -46,14 +46,26 @@ module Worksheet
       return nil
     elsif
       type=cell.getCellType()
-      p type
+#      p type
       if type == 0
         return cell.getNumericCellValue
       elsif type == 1
-        return cell.getStringCellValue
+        return trans(cell.getStringCellValue)
       end
     end
   end
+
+	def	trans(s)
+		if s =~ /Tr/ || s =~ /-/
+			return 0
+		elsif s =~ /\(*(\d+)\.(\d+)\)*/
+			return "#{$1}.#{$2}".to_f
+		elsif s =~ /\(*(\d+)\)*/
+			return "#{$1}".to_i
+		else return s
+		end
+	end
+
 end
 
 
@@ -69,7 +81,7 @@ module GoteiUtil
 #Gotei_file='計算しましょ　「五訂成分」.xls'
 #Gotei_file='計算しましょ　「五訂増補版」.xls'
 #Gotei_file='計算しましょ　「五訂増補版」.xlsx'
-Gotei_file='nanatei_1.xlsx'
+Gotei_file='nanatei-1.xlsx'
 
 include Apath
 
@@ -80,7 +92,6 @@ include Apath
   def get_sheet(excel,filename)
     workBook= XSSFWorkbook.new(filename)
     sheet = workBook.getSheetAt(0)
-#    p sheet
 #    p sheet
     sheet.extend Worksheet
     return sheet	

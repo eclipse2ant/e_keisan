@@ -14,6 +14,7 @@ require 'poi-excelant-3.17.jar'
 require 'xmlbeans-2.6.0.jar'
 
 java_import 'java.io.FileInputStream'
+java_import 'java.io.FileOutputStream'
 java_import 'org.apache.poi.hssf.usermodel.HSSFWorkbook'
 java_import 'org.apache.poi.hssf.usermodel.HSSFSheet'
 java_import 'org.apache.poi.hssf.usermodel.HSSFRow'
@@ -49,11 +50,23 @@ module Worksheet
 #      p type
       if type == 0
         return cell.getNumericCellValue
-      elsif type == 1
+      elsif type == 1 
         return trans(cell.getStringCellValue)
       end
     end
   end
+
+	def []= y,x,v
+		row = self.getRow(y-1)
+		if row.nil?
+			row = self.createRow(y-1)
+		end
+    cell=row.getCell(x-1)
+    if cell.nil? 
+			cell = row.createCell(x-1)
+		end
+		cell.setCellValue(v)
+	end
 
 	def	trans(s)
 		if s =~ /Tr/ || s =~ /-/
@@ -69,49 +82,37 @@ module Worksheet
 end
 
 
-class SheetHolders 
+class SheetHolder
   include Singleton
 
-	@sheets
+	@sheet
 
-	attr_accessor :sheets
+	attr_accessor :sheet
 end
 
-module GoteiUtil
-#Gotei_file='計算しましょ　「五訂成分」.xls'
-#Gotei_file='計算しましょ　「五訂増補版」.xls'
-#Gotei_file='計算しましょ　「五訂増補版」.xlsx'
-Gotei_file='nanatei-1.xlsx'
+module RevUtil
 
 include Apath
 
-  def get_filenames
-    rev=0
-    filenames=[]
-    for rev in 1..2 do
-      filenames << FileInputStream.new(apath("nanatei-#{rev}.xlsx"))
-    end
-    return filenames
+  def get_filename(f)
+    FileInputStream.new(apath(f))
   end
 
-  def get_sheets(excel,filenames)
-    sheets=[]
-    for rev in 1..2 do
-      workBook= XSSFWorkbook.new(filenames[rev-1])
-      sheet=workBook.getSheetAt(0)
-#      p sheet
-      sheet.extend Worksheet
-      sheets << sheet
-    end
-    return sheets	
-  end
- 
+  def get_workbook(filename)
+    XSSFWorkbook.new(filename)
+  end    
 
-  def filesclose(filenames)
-    filenames.each do |f|
-      f.close
-    end
+  def get_sheet(wb)
+      sheet = wb.getSheetAt(0)
+#    p sheet
+    sheet.extend Worksheet
+    return sheet	
   end
+
+  def put_filename(f)
+    FileOutputStream.new(apath(f) , true)
+  end
+
 
 end
 

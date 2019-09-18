@@ -17,7 +17,7 @@ SEIBUN_NAME=
 \
 'クロム','モリブデン','レチノール','α-カロテン','β-カロテン','β-クリプトキサン','β-カロテン当量','レチノール活性当量','ビタミンD','α-トコフェロール', \
 \
-'βトコフェロールル','Γ-トコフェロール','δ-トコフェロー','ビタミンK','ビタミンB1','ビタミンB2','ナイアシン','ビタミンB6','ビタミン12','葉酸',\
+'βトコフェロールル','Γ-トコフェロール','δ-トコフェロー','ビタミンK','ビタミンB1','ビタミンB2','ナイアシン','ナイアシン当量','ビタミンB6','ビタミン12','葉酸',\
 \
 'パントテン酸','ビオチン','ビタミンC', '食塩相当量','アルコール','硫酸イオン','テオブロミン','カフェイン','タンニン','ポリフェノール',\
 \
@@ -46,17 +46,19 @@ class View
 			puts "#{recipe.energy.roundoff(1)} kcal (#{recipe.energy_per_person.roundoff(1)} kcal)" 
 			puts ""
 			print"(タンパク質;#{recipe.v_seibun_per_person[3].roundoff(1)}g)" 
-			print "(塩分;#{recipe.v_seibun_per_person[51].roundoff(1)}g)" 
+			print "(塩分;#{recipe.v_seibun_per_person[52].roundoff(1)}g)" 
 			print "\n" 
-			print "(DM交換表; #{recipe.v_seibun_per_person.roundoff(1).to_a[62..68].join(' ')})" 
+#		print "(DM交換表; #{recipe.v_seibun_per_person.roundoff(1).to_a[62..68].join(' ')})" 
+		print "(DM交換表; #{recipe.v_seibun_per_person.roundoff(1).to_a[63..69].join(' ')})" 
 			print "\n\n"
 		end
 		puts "Total:#{@r_list.energy.roundoff(1)} kcal (#{@r_list.energy_per_person.roundoff(1)} kcal)"
-		puts ""
+	puts ""
 		print "(タンパク質;#{@r_list.v_seibun_per_person[3].roundoff(1)}g)" 
-		print "(塩分;#{@r_list.v_seibun_per_person[51].roundoff(1)}g)"
+		print "(塩分;#{@r_list.v_seibun_per_person[52].roundoff(1)}g)"
 		print "\n" 
-		print "(DM交換表; #{@r_list.v_seibun_per_person.roundoff(1).to_a[62..68].join(' ')})" 
+#		print "(DM交換表; #{@r_list.v_seibun_per_person.roundoff(1).to_a[62..68].join(' ')})" 
+		print "(DM交換表; #{@r_list.v_seibun_per_person.roundoff(1).to_a[63..69].join(' ')})" 
 		print "\n\n"
 #		p @r_list.v_seibun_per_person
 #		p SEIBUN_NAME.length
@@ -73,7 +75,7 @@ end
 
 
 if $0 == __FILE__ # (3)
-  check_usage 
+#  check_usage 
 	Manager.new().run
 end
 
