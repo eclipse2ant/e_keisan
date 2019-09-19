@@ -31,7 +31,7 @@ class Gotei
   end
 
   def set_record(name,sheets)
-    hed=[8,9,8]
+    hed=[8,9,8,8]
     File.open(apath("data/nanatei.list"),"r:utf-8").each do |s|
       seibun = s.chop.split(',')
       if name.strip == seibun[0]
@@ -42,7 +42,8 @@ class Gotei
 #        p sheet
 #         puts seibun[0]
 #	      1.upto(67) do |y|
-	      1.upto(68) do |y|
+#	      1.upto(68) do |y|
+	      1.upto(69) do |y|
 #         p sheet[x,y]
 	        @record << sheet[x,y]
 	      end
