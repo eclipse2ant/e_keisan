@@ -88,7 +88,7 @@ include Apath
   def get_filenames
     rev=0
     filenames=[]
-    for rev in 1..2 do
+    for rev in 1..4 do
       filenames << FileInputStream.new(apath("nanatei-#{rev}.xlsx"))
     end
     return filenames
@@ -96,7 +96,7 @@ include Apath
 
   def get_sheets(excel,filenames)
     sheets=[]
-    for rev in 1..2 do
+    for rev in 1..4 do
       workBook= XSSFWorkbook.new(filenames[rev-1])
       sheet=workBook.getSheetAt(0)
 #      p sheet
