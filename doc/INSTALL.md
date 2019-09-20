@@ -118,7 +118,8 @@ git clone https://github.com/eclipse2ant/e_keisan
 クリックします。（既にE_KEISANという変数が作られてる方は、変数の中か
 らE_KEISANを選んで編集ボタンを押してください。）
 
-変数名に　E_KEISAN　変数値に　例えば、cd Desktop を実行して
+変数名に　E_KEISAN　変数値には、コピペ君のインストール先をにゅうｓ力し
+ます。例えば先ほど　cd Desktop を実行して
 
 gir clone  https://github.com/eclipse2ant/e_keisan
 
