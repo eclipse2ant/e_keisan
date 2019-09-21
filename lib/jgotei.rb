@@ -32,7 +32,8 @@ class Gotei
 
   def set_record(name,sheets)
     hed=[8,9,8,8]
-    File.open(apath("data/nanatei.list"),"r:utf-8").each do |s|
+#    File.open(apath("data/nanatei.list"),"r:utf-8").each do |s|
+    File.open(apath("nanatei.list"),"r:utf-8").each do |s|
       seibun = s.chop.split(',')
       if name.strip == seibun[0]
 	      @record = []
